@@ -1,0 +1,5 @@
+Three matrices are in matrices_report.pdf.
+My understandings for degree report are as follows:
+1. Degree distribution represents the count distribution of different degrees (or valency) of a vertex of a graph, degree is the number of edges incident to the vertex. Average degree is 1.544 means there is averagely 1.544 edges per node.
+2. Network diameter is 11, this parameter describes the centrality of the graph, the higher the centrality is, more nodes are connected, more clusters are generated closely, the data are more correlated with each other.
+3. Average path length is 3.88, also evaluate the average correlation per node. For example, the movie has similar movies with many similar movies themselves tends to generate longer path length since the path needs to be long enough to link other movies in the graph.

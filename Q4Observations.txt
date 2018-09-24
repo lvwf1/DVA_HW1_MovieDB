@@ -1,0 +1,7 @@
+c(i). 488 choices
+c(ii). split(value, ",")[0]
+c(iii). 
+nominal: address, city, country, keys, name, postalCode, province, websites
+ordinal: latitude, longitude
+c(iv). contains(value,'GA')
+c(v). split(value, '://')[1]

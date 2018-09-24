@@ -1,0 +1,28 @@
+create table movies(id integer, name text, score integer);
+create table cast(movie_id integer, cast_id integer, cast_name text);
+.separator , \n
+.import movie-name-score.txt movies
+.separator ,
+.import movie-cast.txt cast
+CREATE INDEX scores_index ON movies (score);
+CREATE INDEX movie_index ON movies (id);
+CREATE INDEX cast_index ON cast (cast_id);
+select avg(score) as average_score from movies where score>=5;
+select * from movies order by score asc, name asc limit 5;
+select cast_id, cast_name, COUNT(distinct movie_id) as movie_count from cast group by cast_id having count(distinct movie_id) = 2 order by cast_name asc limit 10;
+select cast_id, cast_name, avg(m.score) as average_score from cast as c, movies as m where m.score>=40 and c.movie_id=m.id group by cast_id having count(distinct movie_id) > 2 order by avg(m.score) desc, cast_name asc limit 10;
+create view good_collaboration(cast_member_id1,cast_member_id2,movie_count,average_movie_score) as
+select c1.cast_id, c2.cast_id, count(distinct m.id), avg(m.score) from movies as m join cast c1 on c1.movie_id = m.id join cast c2 on c2.movie_id = m.id where c1.cast_id<c2.cast_id and m.score>=50 group by c1.cast_name, c2.cast_name having count(distinct m.id)>=3;
+select * from (
+SELECT g.cast_member_id1 as cast_id, c.cast_name as cast_name, g.average_movie_score as collaboration_score FROM good_collaboration as g, cast as c where c.cast_id=g.cast_member_id1
+union
+SELECT g.cast_member_id2 as cast_id, c.cast_name as cast_name, g.average_movie_score as collaboration_score FROM good_collaboration as g, cast as c where c.cast_id=g.cast_member_id2
+)
+group by cast_id
+order by avg(collaboration_score) desc
+limit 5;
+CREATE VIRTUAL TABLE movie_overview USING fts4(id integer,name text,year integer,overview text,popularity decimal);
+.separator , \n
+.import movie-overview.txt movie_overview
+SELECT count(*) as count_overview FROM movie_overview WHERE overview match 'fight';
+SELECT id FROM movie_overview WHERE overview MATCH 'love NEAR/5 story';
