@@ -1,0 +1,4 @@
+Graph Explaination:
+1. The Fruchterman Reingold and Force Atlas2 algorithm are executed to prevent overlap among different movies and provide symmetric overlook
+2. The font is set to an appropriate size and high contrast color to the nodes and edge and movie text can deliver maximum information compared to id
+2. The different node color and size ranking can highlight more visualization to the users about which movies are classical, technically have high eccentricity compared to others

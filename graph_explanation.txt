@@ -1,4 +1,0 @@
-My explanation for the graph visualization lies beyond the following reasons:
-1. The nodes with movie name are more representative than Ids, the higher eccentricity the movie will have large font, which highlight classical recommended movies to the users.
-2. The nodes are indicated in different color, which ranks the eccentricity of each node, the nodes with more nodes connected, more important the movie with blue is, less important movies are in red on the side.
-3. To get a concise visualization, the graph is symmetric in circle and connected with single color edge.
